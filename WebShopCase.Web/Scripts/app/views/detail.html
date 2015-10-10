@@ -1,0 +1,82 @@
+﻿<div ui-content-for="modals">
+    <div class="modal" ui-if="event" ui-state="event">
+        <div class="modal-backdrop in"></div>
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" ui-turn-off="event">x</button>
+                    <h4 class="modal-title">Article Detail</h4>
+                </div>
+
+                <div class="modal-body" style="height: 500px">
+                    <div class="scrollable">
+                        <div class="scrollable-content">
+                            <div class="list-group-item list-group-item-home" style="height: 100%">
+                                <div class="media pull-left">
+                                    <a class="pull-left good-image">
+                                        <img data-ng-src="{{article.ProductPct}}" alt="..." ng-show="article.ProductPct">
+                                        <img style="width:60%" ng-hide="article.ProductPct"
+                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAN2AAADdgF91YLMAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAADNQTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8YBMDAAAABB0Uk5TAAEKJipgcH+AoLO11eb19szmkd4AAAH3SURBVHja7drrcoIwEAVgLVm6wVB4/6etl3FMaBJYdkE6nv3ZGZpPzzEywdMJg8F8/Iw7DwAAAHBcwNs3IgAAAOAwgN03JgAAAOCwgN32HwAAAAAAAAAA4F8AGu76vuNmxTrk9IBzOzz+NLRn6fruh9WA8+V1/3QRCr7CGNSANr6Da2UAf73EKQHNEAMGUQ/odgkrAd/pTSyLCnC7IigBXQroRAW4j9MB+hTQywpQftO2B9DzkvCeCB4FKGewdQmfBShes/XH0EcXhTdsRJS8bW73rTgqQCmDTb+M4gKUMtj069hPDwGc/Q0J8dICFDJQAq4h88ICFDLQAe4h87ICFDLQAXxlU/K5kyC2BVDl40XZo6hgCniFzEsKkM9AAaht89kCZKkKgK/8Y186Dgx2AKq8NCofSDorwJ+Qeb4AuQzWAjIh82wBchmsBfjKi/PVQ2FnAqDK20v1U2m2AJRC5pkCZDJYBSiHzPUCZDJYBaiEzH72yQCrAaR7NBG0gLmQR1EGcsB8yKIM5ACvXT/NQAygUT9OAVAXYJqBEKAvwDQDIcCPJuPWAshm/TgDEcCkAJMMJACbAkwykAC82fpRBgIA2a0fZbAcYFaANIPFAMMCJBksBnjT9V8Z4IkJAAAAUFwHAAAAAGD3HzQCAAAAhwNgMJiPm1/nFagamXGcMgAAAABJRU5ErkJgggc8693bae7cb0dd74b7acfd22da56e373" />
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading" ng-bind="article.ProductName"></h3>
+                                    <h3 class="text-info">
+                                        {{article.UnitPrice}} Euro  (V.A.T. {{article.VAT*100}}%)
+                                    </h3>
+
+                                    <div class="addcart-section" style="margin: 12px 0 32px;">
+                                        <button type="button" class="btn btn-default" 
+                                            data-ng-show="subtotals()[article.ProductID].totalQty === undefined || subtotals()[article.ProductID].totalQty == 0" 
+                                            data-ng-click='addToCart(article.ProductID, 1, article.UnitPrice, article.ProductName, article.ProductPct, article.VAT)'>
+                                            Add to cart
+                                        </button>
+                                        <form class="form-inline ng-pristine ng-valid ng-hide" role="form" data-ng-show="subtotals()[article.ProductID].totalQty>=1">
+                                            <div class="form-group">
+                                                <div class="input-group" style="max-width: 130px;">
+                                                    <div class="input-group-addon" 
+                                                        data-ng-click="addToCart(article.ProductID, 1, article.UnitPrice, article.ProductName, article.ProductPct, article.VAT)">+</div>
+                                                    <input class="form-control ng-pristine ng-valid needsclick" type="text" data-ng-model="subtotals()[article.ProductID].totalQty">
+                                                    <!--
+                                                    <div class="input-group-addon" data-ng-click="addToCart(article.ProductID, -1, (-1) * article.UnitPrice, article.ProductName, article.ProductPct)">-</div>
+                                                    -->
+                                                    <div class="input-group-addon" data-ng-click="removeFromCart(article.ProductID)">-</div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <p>
+                                        <span style="padding-right:5px">Quantity per Unit:</span><b>{{article.QuantityPerUnit}}</b>
+                                    </p>
+                                    <p>
+                                        <span style="padding-right:5px">Units in Stock:</span><b>{{article.UnitsInStock}}</b>
+                                    </p>
+                                    <p>
+                                        <span style="padding-right:5px">Units in Order:</span><b>{{article.UnitsOnOrder}}</b>
+                                    </p>
+                                    <p>
+                                        <span style="padding-right:5px">Category:</span><b>{{article.CategoryName}}</b>
+                                        <div class="media pull-left">
+                                            <span class="pull-left good-image">
+                                                <img data-ng-src="{{article.CategoryPct}}" alt="..." ng-show="article.CategoryPct">
+                                                <img style="width:60%" ng-hide="article.CategoryPct"
+                                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAN2AAADdgF91YLMAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAADNQTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8YBMDAAAABB0Uk5TAAEKJipgcH+AoLO11eb19szmkd4AAAH3SURBVHja7drrcoIwEAVgLVm6wVB4/6etl3FMaBJYdkE6nv3ZGZpPzzEywdMJg8F8/Iw7DwAAAHBcwNs3IgAAAOAwgN03JgAAAOCwgN32HwAAAAAAAAAA4F8AGu76vuNmxTrk9IBzOzz+NLRn6fruh9WA8+V1/3QRCr7CGNSANr6Da2UAf73EKQHNEAMGUQ/odgkrAd/pTSyLCnC7IigBXQroRAW4j9MB+hTQywpQftO2B9DzkvCeCB4FKGewdQmfBShes/XH0EcXhTdsRJS8bW73rTgqQCmDTb+M4gKUMtj069hPDwGc/Q0J8dICFDJQAq4h88ICFDLQAe4h87ICFDLQAXxlU/K5kyC2BVDl40XZo6hgCniFzEsKkM9AAaht89kCZKkKgK/8Y186Dgx2AKq8NCofSDorwJ+Qeb4AuQzWAjIh82wBchmsBfjKi/PVQ2FnAqDK20v1U2m2AJRC5pkCZDJYBSiHzPUCZDJYBaiEzH72yQCrAaR7NBG0gLmQR1EGcsB8yKIM5ACvXT/NQAygUT9OAVAXYJqBEKAvwDQDIcCPJuPWAshm/TgDEcCkAJMMJACbAkwykAC82fpRBgIA2a0fZbAcYFaANIPFAMMCJBksBnjT9V8Z4IkJAAAAUFwHAAAAAGD3HzQCAAAAhwNgMJiPm1/nFagamXGcMgAAAABJRU5ErkJgggc8693bae7cb0dd74b7acfd22da56e373" />
+                                            </span>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button ui-turn-off="event" class="btn btn-primary" ng-click="do()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

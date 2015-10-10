@@ -1,0 +1,73 @@
+﻿<fieldset>
+    <legend>Customer Information</legend>
+
+    <div class="form-group">
+        <label>First Name</label>
+        <span style="color:red" ng-show="form.firstName.$dirty && form.firstName.$invalid">
+            <span ng-show="form.firstName.$error.required"> is required.</span>
+        </span>
+        <input type="text" required
+                class="form-control"
+                placeholder=""
+                ng-model="customer.FirstName" name="firstName">
+                   
+        <label>Last Name</label>
+            <span style="color:red" ng-show="form.lastName.$dirty && form.lastName.$invalid">
+            <span ng-show="form.lastName.$error.required"> is required.</span>
+        </span>
+        <input type="text" required
+                class="form-control"
+                placeholder=""
+                ng-model="customer.LastName" name="lastName">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Address</label>
+        <span style="color:red" ng-show="form.address.$dirty && form.address.$invalid">
+            <span ng-show="form.address.$error.required"> is required.</span>
+        </span>
+        <input type="text" required
+                class="form-control"
+                placeholder=""
+                ng-model="customer.Address" name="address">
+                    
+                    
+        <label class="control-label">Zip Code</label>
+        <span style="color:red" ng-show="form.zipCode.$dirty && form.zipCode.$invalid">
+            <span ng-show="form.zipCode.$error.required"> is required.</span>
+        </span>
+        <input type="text" required
+                class="form-control"
+                placeholder=""
+                ng-model="customer.PostalCode" name="zipCode">
+                    
+                    
+        <label class="control-label">City</label>
+        <span style="color:red" ng-show="form.city.$dirty && form.city.$invalid">
+            <span ng-show="form.city.$error.required"> is required.</span>
+        </span>
+        <input type="text" required
+                class="form-control"
+                placeholder=""
+                ng-model="customer.City" name="city">
+
+        <label class="control-label">Country</label>
+        <span style="color:red" ng-show="form.country.$dirty && form.country.$invalid">
+            <span ng-show="form.country.$error.required"> is required.</span>
+        </span>
+        <input type="text" required
+                class="form-control"
+                placeholder=""
+                ng-model="customer.Country" name="country">
+
+    </div>
+                
+    <div class="form-group">
+        <label>Email / User Name</label>
+        <input type="email" disabled
+                ng-model="customer.UserName"
+                class="form-control"
+                placeholder="customer.UserName" name="email">
+    </div>
+
+</fieldset>

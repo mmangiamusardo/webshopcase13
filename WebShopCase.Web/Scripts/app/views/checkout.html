@@ -1,0 +1,53 @@
+﻿<div ui-content-for="title">
+    <span></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content section">
+        <form role="form" ng-submit='checkout()' name="orderForm">
+            
+            <fieldset disabled class="section-break">
+                <legend>Order resume</legend>
+                Go to review or modify your cart <a href="#/cart">Cart <i class="fa fa-shopping-cart"></i></a>
+                <div class="form-group">
+                    <label for="disabledQty" class="control-label">Total Items</label>
+                    <div class="">
+                        <input type="text" id="disabledQty" class="form-control" placeholder="{{size()}}" ng-model="orderQty" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="disabledVAT" class="control-label">Total VAT (<i class="fa fa-eur"></i>)</label>
+                    <div class="">
+                        <input type="text" id="disabledVAT" class="form-control" placeholder="{{totalVat()}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="disabledPrice" class="control-label">Total Price (<i class="fa fa-eur"></i>)</label>
+                    <div class="">
+                        <input type="text" id="disabledPrice" class="form-control" placeholder="{{total() + totalVat()}}"  ng-model="orderPrice" />
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <div class="form-group">
+                <label for="shipper" class="control-label">Shipper</label>
+                 <select class="form-control" ng-model="selectedShipper">
+                    <option ng-selected= "{{value.ShipperID == selectedShipper}}" 
+                            ng-repeat="value in shippers" 
+                            value="{{value.ShipperID}}">{{value.CompanyName}}     
+                    </option>
+             </select>
+            
+            <profile-customer></profile-customer>
+
+            
+            
+            <hr>
+
+            <button class="btn btn-primary btn-block" ng-disabled="orderForm.$invalid">
+                Check out
+            </button>
+
+        </form>
+    </div>
+</div>

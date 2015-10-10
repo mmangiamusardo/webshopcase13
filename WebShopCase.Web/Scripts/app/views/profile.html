@@ -1,0 +1,14 @@
+﻿<div ui-content-for="title">
+    <span></span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content section">
+        <form role="form" ng-submit='save()' name="form">
+            <profile-customer></profile-customer>
+            <hr>
+            <button class="btn btn-primary btn-block" ng-disabled="orderForm.$invalid">
+                Save Profile
+            </button>
+        </form>
+    </div>
+</div>

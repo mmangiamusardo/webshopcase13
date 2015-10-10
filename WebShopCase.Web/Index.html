@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Web Shop Case</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="Content/css/mobile-angular-ui-hover.min.css"/>
+    <link rel="stylesheet" href="Content/css/mobile-angular-ui-base.min.css"/>
+    <link rel="stylesheet" href="Content/css/mobile-angular-ui-desktop.min.css"/>
+    <link rel="stylesheet" href="Content/css/toaster.min.css"/>
+ 
+    <link rel="stylesheet" href="Content/css/site.css"/>
+    <link rel="stylesheet" href="Content/css/ladda.css"/>
+
+    <script src="Content/js/jquery-1.10.2.min.js"></script>
+
+    <script src="Content/js/angular.js"></script>
+    <script src="Content/js/angular-route.js"></script>
+    <script src="Content/js/mobile-angular-ui.min.js"></script>
+    <script src="Content/js/mobile-angular-ui.gestures.min.js"></script>
+
+    <script src="Content/js/toaster.min.js"></script>
+    <script src="Content/js/spin.min.js"></script>
+    <script src="Content/js/ladda.min.js"></script>
+    
+    <script src="Scripts/app/app.js"></script>
+
+    <script src="Scripts/app/services/accountservice.js"></script>
+    <script src="Scripts/app/services/profileservice.js"></script>
+    <script src="Scripts/app/services/shareddataservice.js"></script>
+    <script src="Scripts/app/services/shopservice.js"></script>
+    <script src="Scripts/app/services/cartservice.js"></script>
+
+    <script src="Scripts/app/controllers/accountcontroller.js"></script>
+    <script src="Scripts/app/controllers/articlecontroller.js"></script>
+    <script src="Scripts/app/controllers/cartcontroller.js"></script>
+    <script src="Scripts/app/controllers/checkoutcontroller.js"></script>
+    <script src="Scripts/app/controllers/processcontroller.js"></script>
+
+    <script src="Scripts/app/directives/profileCmp.js"></script>
+    <script src="Scripts/app/directives/cartCmp.js"></script>
+
+</head>
+
+<body   ng-app="wscApp"
+        ui-prevent-touchmove-defaults
+        ng-controller="MainController">
+
+    <!-- Sidebars -->
+    <div ng-include="'Scripts/app/partials/sidebar.html'"
+         ui-track-as-search-param='true'
+         class="sidebar sidebar-left"></div>
+    
+    <div class="app" 
+         ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
+         ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+    
+        <!-- Navbars -->
+        <div class="navbar navbar-app navbar-absolute-top">
+            <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+            </div>
+
+            <a class="btn-group pull-left">
+                <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+                    <i class="fa fa-bars"></i>Menu
+                </div>
+            </a>
+
+            <!--
+            <div class="btn-group pull-right" ui-yield-to="navbarAction">
+                <div class="btn">
+                    <i class="fa fa-shopping-cart fa-1x"></i>
+                    <span style="padding-left: 5px; padding-right: 5px">{{sizeCart}}</span>
+                    <span style="padding-left: 5px; padding-right: 5px" ng-model="SrvCart.test"></span>
+
+                    <i class="fa fa-eur" style="padding-left: 5px"></i>
+                    <span style="padding-left: 5px; padding-right: 5px">{{totalCart}}</span>
+                </div>
+            </div>
+            -->
+
+            <cart-component></cart-component>
+
+            <div class="btn-group pull-right" ng-show="isUserAuthenticated()">
+                <a ui-turn-on='myDropdown{{idx}}' class='btn'>
+                    <i class="fa fa-user fa-fw"></i>Hi User
+                    <span class="fa fa-caret-down"></span>
+                </a>
+                <ul ui-state="myDropdown{{idx}}"
+                    class="dropdown-menu"
+                    ui-outer-click="Ui.turnOff('myDropdown' + idx)"
+                    ui-outer-click-if="Ui.active('myDropdown' + idx)"
+                    role="menu"
+                    ui-show="myDropdown{{idx}}"
+                    ui-turn-off="myDropdown{{idx}}">
+
+                    <li><a href="#/profile"><i class="fa fa-pencil fa-fw"></i>Profile</a></li>
+                    <li><a href="#/orders"><i class="fa fa-cart-arrow-down fa-fw"></i>Orders</a></li>
+                    <li><a href="#/wishes"><i class="fa fa-gift fa-fw"></i>Wishes</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>Log out</a></li>
+                </ul>
+            </div>
+
+            <div class="btn-group pull-right" yield-to="navbarAction">
+			    <div class="btn btn-navbar">
+				    <i class="fa"></i>
+				    <a href="#/register" ng-hide="isUserAuthenticated()" class="btn"><i class="fa fa-sign-in fa-fw"></i>Register</a>
+                    <a href="#/signin" ng-hide="isUserAuthenticated()" class="btn"><i class="fa fa-sign-in fa-fw"></i>SignIn</a>
+			    </div>
+		    </div>
+
+        </div>
+
+        <div class="navbar navbar-app navbar-absolute-bottom">
+            <div class="btn-group justified">
+                <a href="/#/" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> Docs</a>
+                <a href="https://github.com/mmangiamusardo/webshopcase" class="btn btn-navbar"><i
+                        class="fa fa-github fa-navbar"></i> Sources</a>
+                <a href="/#/" class="btn btn-navbar"><i
+                        class="fa fa-exclamation-circle fa-navbar"></i> Issues</a>
+            </div>
+        </div>
+
+        <!-- App Body -->
+        <div class="app-body" ng-class="{loading: loading}">
+            <div ng-show="loading" class="app-content-loading">
+                <i class="fa fa-spinner fa-spin loading-spinner"></i>
+            </div>
+            <ng-view class="app-content" ng-hide="loading"></ng-view>
+        </div>
+    
+    </div>
+
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
+    <div ui-yield-to="modals"></div>
+</body>
+</html>
+
