@@ -1,5 +1,5 @@
 ﻿angular.module("wscApp")
-    .controller('CheckoutCtrl', function ($scope, $location, $timeout, srvSharedData, srvCart, srvAccount, toaster) {
+    .controller('CheckoutCtrl', function ($scope, $location, srvSharedData, srvCart, srvAccount, toaster) {
 
         if (!srvAccount.isUserAuthenticated()) {
 

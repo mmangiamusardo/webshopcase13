@@ -1,6 +1,14 @@
 ﻿(function () {
     var app = angular.module("wscApp", ['ngRoute', 'mobile-angular-ui', 'mobile-angular-ui.gestures', 'toaster']);
     
+    app.constant('registerUrl', '/api/Account/Register');
+    app.constant('tokenUrl', '/Token');
+    app.constant('tokenKey', 'accessToken');
+    app.constant('articleSrvUrl', 'http://localhost:50040/api/products/');
+    app.constant('orderSrvUrl', 'http://localhost:50040/api/orders/');
+    app.constant('articleSrvUrl', 'http://localhost:50040/api/products/');
+    app.constant('profileSrvUrl', 'http://localhost:50040/api/customers/');
+
     app.run(function ($transform) {
         window.$transform = $transform;
     });
@@ -12,7 +20,6 @@
                 event.preventDefault();
             }
         });
-
         
         $rootScope.$on('$routeChangeStart', function (e, curr, prev) {
             if (curr.$$route && curr.$$route.resolve) {
@@ -27,15 +34,6 @@
             $rootScope.loading = false;
         });
 
-        //$http.defaults.transformRequest.push(function (data) {
-        //    $rootScope.progress = true;
-        //    return data;
-        //});
-
-        //$http.defaults.transformResponse.push(function (data) {
-        //    $rootScope.progress = false;
-        //    return data;
-        //})
 
     }]); // end app.run
 
@@ -45,8 +43,9 @@
             templateUrl: 'Scripts/app/views/article.html',
             controller: 'ArticleCtrl',
             resolve: {
-                articles: function (srvShop, $route) {
-                    return srvShop.getArticles($route.current.params.pageIndex, $route.current.params.pageSize);
+                articles: function (srvArticle, $route) {
+                    return srvArticle.getArticles($route.current.params.pageIndex,
+                        $route.current.params.pageSize);
                 }
             }
         });
@@ -55,8 +54,8 @@
             templateUrl: 'Scripts/app/views/article.html',
             controller: 'ArticleCtrl',
             resolve: {
-                articles: function (srvShop, $route) {
-                    return srvShop.getArticles();
+                articles: function (srvArticle, $route) {
+                    return srvArticle.getArticles();
                 }
             }
         });
@@ -75,8 +74,8 @@
             templateUrl: 'Scripts/app/views/process.html',
             controller: 'ProcessCtrl',
             resolve: {
-                result: function (srvShop, srvSharedData) {
-                    var res = srvShop.postOrder2(srvSharedData.getOrder());
+                result: function (srvOrder, srvSharedData) {
+                    var res = srvOrder.postOrder(srvSharedData.getOrder());
                     return res;
                 }
             }
@@ -86,8 +85,8 @@
             templateUrl: 'Scripts/app/views/process.html',
             controller: 'ProcessCtrl',
             resolve: {
-                order: function (srvShop, $route) {
-                    return srvShop.getOrder($route.current.params.id);
+                order: function (srvOrder, $route) {
+                    return srvOrder.getOrder($route.current.params.id);
                 }
             }
         });
@@ -118,11 +117,7 @@
 
     }]);
 
-    app.constant('registerUrl', '/api/Account/Register');
-    app.constant('tokenUrl', '/Token');
-    app.constant('tokenKey', 'accessToken');
-
-    app.controller('MainController', function ($scope, $log, $location, srvAccount) {
+    app.controller('MainCtrl', function ($scope, $location, srvAccount) {
 
         $scope.isUserAuthenticated = function () {
             return srvAccount.isUserAuthenticated();
@@ -131,18 +126,6 @@
             srvAccount.logout();
             $location.path('/');
         }
-    });
-
-    app.directive('modal', function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'Scripts/app/views/detail.html',
-            link: function (scope, element, attrs) {
-                scope.do = function () {
-                    console.log('doing something...');
-                }
-            }
-        };
     });
 
     app.directive('uiLadda', [function () {

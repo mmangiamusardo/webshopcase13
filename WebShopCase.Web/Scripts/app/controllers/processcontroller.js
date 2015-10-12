@@ -1,23 +1,28 @@
 ﻿angular.module("wscApp")
-    .controller('ProcessCtrl', function ($scope, $location, result, srvCart, toaster) {
+    .controller('ProcessCtrl', function ($scope, $location, result, srvCart, srvAccount, toaster) {
 
-        //$scope.result = result;
+        if (!srvAccount.isUserAuthenticated()) {
 
-        //if ($scope.result == undefined) {
-        //    toaster.pop({
-        //        type: 'error',
-        //        body: "Something went wrong!",
-        //        bodyOutputType: 'trustedHtml',
-        //    });
+            toaster.pop({
+                type: 'error',
+                body: "User must be logged in to checkout",
+                bodyOutputType: 'trustedHtml',
+            });
 
-        //    $location.path('/checkout');
-        //}
-        //else
-        //{
-        //    srvCart.clear();
-        //    $scope.processedOrder = result.data;
+            $location.path("/signin");
+        }
 
-        //}
-        srvCart.clear();
-        $scope.processedOrder = result.data;
+        if (result.status !== 200) {
+            toaster.pop({
+                type: 'error',
+                body: result.data.Message,
+                bodyOutputType: 'trustedHtml',
+            });
+
+            $location.path('/checkout');
+        }
+        else {
+             srvCart.clear();
+        }    $scope.processedOrder = result.data;
+
 });

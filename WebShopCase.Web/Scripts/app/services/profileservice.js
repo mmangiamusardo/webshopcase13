@@ -1,11 +1,11 @@
 ﻿angular.module("wscApp")
-    .service('srvProfile', function ($http, tokenKey) {
+    .service('srvProfile', function ($http, tokenKey, profileSrvUrl) {
     var srv = {
         post: function (profile) {
 
             var promise = $http({
                 method: 'POST',
-                url: 'http://localhost:50040/api/customers',
+                url: profileSrvUrl,
                 data: profile,
                 headers: { 'Authorization': 'Bearer ' + sessionStorage.getItem(tokenKey) }
             });
@@ -16,7 +16,7 @@
 
             var promise = $http({
                 method: 'PUT',
-                url: 'http://localhost:50040/api/customers',
+                url: profileSrvUrl,
                 data: JSON.stringify(profile),
                 headers: { 'Authorization': 'Bearer ' + sessionStorage.getItem(tokenKey) }
             });
@@ -27,7 +27,7 @@
         {
             var promise = $http({
                 method: 'GET',
-                url: 'http://localhost:50040/api/customers/' + username,
+                url: profileSrvUrl + username,
                 headers: { 'Authorization': 'Bearer ' + sessionStorage.getItem(tokenKey) }
             });
             return promise;

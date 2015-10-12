@@ -174,6 +174,7 @@
     <Content Include="Scripts\app\components\cartCmp.html" />
     <Content Include="Scripts\app\directives\cartCmp.js" />
     <Content Include="Scripts\app\components\profileCmp.html" />
+    <Content Include="Scripts\app\directives\articleCmp.js" />
     <Content Include="Scripts\app\directives\profileCmp.js" />
     <Content Include="Scripts\app\controllers\accountcontroller.js" />
     <Content Include="Scripts\app\controllers\articlecontroller.js" />
@@ -182,14 +183,15 @@
     <Content Include="Scripts\app\controllers\processcontroller.js" />
     <Content Include="Scripts\app\partials\sidebar.html" />
     <Content Include="Scripts\app\services\accountservice.js" />
+    <Content Include="Scripts\app\services\articleservice.js" />
     <Content Include="Scripts\app\services\cartservice.js" />
-    <Content Include="Scripts\app\services\shopservice.js" />
+    <Content Include="Scripts\app\services\orderservice.js" />
     <Content Include="Scripts\app\services\profileservice.js" />
     <Content Include="Scripts\app\services\shareddataservice.js" />
     <Content Include="Scripts\app\views\article.html" />
     <Content Include="Scripts\app\views\cart.html" />
     <Content Include="Scripts\app\views\wishes.html" />
-    <Content Include="Scripts\app\views\detail.html" />
+    <Content Include="Scripts\app\components\articleCmp.html" />
     <Content Include="Scripts\app\views\checkout.html" />
     <Content Include="Scripts\app\views\orders.html" />
     <Content Include="Scripts\app\views\overlay.html" />

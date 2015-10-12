@@ -13,14 +13,16 @@ namespace WebShopCase.API.Data.Configurations
         public CustomerConfiguration()
         {
             ToTable("Customers");
-            /*
-            Property(o => o.FirstName).IsRequired();
-            Property(o => o.LastName).IsRequired();
-            Property(o => o.City).IsRequired();
-            Property(o => o.Country).IsRequired();
-            Property(o => o.Address).IsRequired();
-            Property(o => o.PostalCode).IsRequired();
-            */
+            
+            //Property(o => o.FirstName).IsRequired();
+            //Property(o => o.LastName).IsRequired();
+            //Property(o => o.City).IsRequired();
+            //Property(o => o.Country).IsRequired();
+            //Property(o => o.Address).IsRequired();
+            //Property(o => o.PostalCode).IsRequired();
+
+            //Property(o => o.CustomerID).IsRequired();
+            //Property(o => o.AppUserID).IsRequired();
          }
     }
 }

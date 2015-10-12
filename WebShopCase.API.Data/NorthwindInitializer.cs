@@ -13,13 +13,16 @@ namespace WebShopCase.API.Data
         protected override void Seed(NorthwindEntities context)
         {
             GetShippers().ForEach(sh => context.Shippers.Add(sh));
+            
             GetCustomers().ForEach(c => context.Customers.Add(c));
+            
             GetSuppliers().ForEach(sp => context.Suppliers.Add(sp));
             
             GetCategories().ForEach(c => context.Categories.Add(c));
             GetProducts().ForEach(p => context.Products.Add(p));
             
             //GetOrderDetails().ForEach(od => context.OrderDetails.Add(od));
+            
             GetOrders().ForEach(o => context.Orders.Add(o));
 
             context.Commit();
@@ -330,25 +333,6 @@ namespace WebShopCase.API.Data
                 ShipperID = 1,
                 
                 CustomerID = 1,
-                /*
-                Customer = new Customer(){
-                    CustomerID = 1,
-                    Address = "Address3",
-                    City = "City3",
-                    Region = "Region3",
-                    PostalCode = "20100",
-                    Country = "Country1",
-                    CompanyName = "CompanyName3",
-                    ContactName = "ContactName3",
-                    ContactTitle = "Mr",
-                    Fax = "fax3",
-                    Phone = "phone3",
-                    //Orders = GetOrders(),
-
-                    Username = "cus3@contoso.com",
-                    Password = "123"
-                },
-                */
                 OrderDetails = GetOrderDetails()
             };
             _ords.Add(ord1);
@@ -363,27 +347,17 @@ namespace WebShopCase.API.Data
             Customer cus1 = new Customer()
             {
                 CustomerID = 1,
+                FirstName = "Marco",
+                LastName = "Mangia",
                 Address = "Address1",
                 City = "City1",
                 Region = "Region1",
                 PostalCode = "20100",
                 Country = "Country1",
                 Orders = GetOrders(),
+                //AppUserID = "f2de7012-5411-4e33-b4c5-abdc54662715"
             };
             _custs.Add(cus1);
-
-            Customer cus2 = new Customer()
-            {
-                CustomerID = 2,
-                Address = "Address2",
-                City = "City2",
-                Region = "Region2",
-                PostalCode = "20100",
-                Country = "Country2",
-                Orders = GetOrders(),
-            };
-            _custs.Add(cus2);
-
 
             return _custs;
         }
@@ -450,6 +424,23 @@ namespace WebShopCase.API.Data
             _sups.Add(sup2);
 
             return _sups;
+        }
+
+        public static AppUser GetUser() 
+        {
+            return new AppUser()
+            {
+                Id = "f2de7012-5411-4e33-b4c5-abdc54662715",
+                Email = "test@test.com",
+                EmailConfirmed = false,
+                PasswordHash = "ADpKjrhBepfLbKeyQL+ouSHn6YdM6A2htPIT3WFas/C+OD0HrrZWX+TCQt5kuydzfw==",
+                SecurityStamp = "80ff829e-af8b-4031-bba0-e3566359941a",
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0,
+                UserName = "test@test.com"
+            };
         }
     }
 }

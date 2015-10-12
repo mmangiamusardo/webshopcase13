@@ -1,5 +1,5 @@
+<article-detail></article-detail>
 <div class="scrollable">
-    <x-modal></x-modal>
     <div class="scrollable-content">
         <div class="list-group">
             <div class="list-group-item media" ng-repeat="art in articles">
@@ -9,7 +9,6 @@
                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAN2AAADdgF91YLMAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAADNQTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8YBMDAAAABB0Uk5TAAEKJipgcH+AoLO11eb19szmkd4AAAH3SURBVHja7drrcoIwEAVgLVm6wVB4/6etl3FMaBJYdkE6nv3ZGZpPzzEywdMJg8F8/Iw7DwAAAHBcwNs3IgAAAOAwgN03JgAAAOCwgN32HwAAAAAAAAAA4F8AGu76vuNmxTrk9IBzOzz+NLRn6fruh9WA8+V1/3QRCr7CGNSANr6Da2UAf73EKQHNEAMGUQ/odgkrAd/pTSyLCnC7IigBXQroRAW4j9MB+hTQywpQftO2B9DzkvCeCB4FKGewdQmfBShes/XH0EcXhTdsRJS8bW73rTgqQCmDTb+M4gKUMtj069hPDwGc/Q0J8dICFDJQAq4h88ICFDLQAe4h87ICFDLQAXxlU/K5kyC2BVDl40XZo6hgCniFzEsKkM9AAaht89kCZKkKgK/8Y186Dgx2AKq8NCofSDorwJ+Qeb4AuQzWAjIh82wBchmsBfjKi/PVQ2FnAqDK20v1U2m2AJRC5pkCZDJYBSiHzPUCZDJYBaiEzH72yQCrAaR7NBG0gLmQR1EGcsB8yKIM5ACvXT/NQAygUT9OAVAXYJqBEKAvwDQDIcCPJuPWAshm/TgDEcCkAJMMJACbAkwykAC82fpRBgIA2a0fZbAcYFaANIPFAMMCJBksBnjT9V8Z4IkJAAAAUFwHAAAAAGD3HzQCAAAAhwNgMJiPm1/nFagamXGcMgAAAABJRU5ErkJgggc8693bae7cb0dd74b7acfd22da56e373" />
                 </a>
                 <div class="media-body">
-                    #{{art.ProductID}} {{$index + 1}}
                     <a ui-set="{event: art.ProductID}">
                         <h3 class="media-heading" ng-bind="art.ProductName"></h3>
                     </a>

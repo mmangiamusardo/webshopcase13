@@ -60,7 +60,6 @@
   <ItemGroup>
     <Compile Include="Configurations\CustomerConfiguration.cs" />
     <Compile Include="Configurations\OrderConfiguration.cs" />
-    <Compile Include="Configurations\OrderDetailConfiguration.cs" />
     <Compile Include="Extensions\LinqHelper.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />

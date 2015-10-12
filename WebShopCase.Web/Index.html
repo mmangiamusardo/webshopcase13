@@ -33,7 +33,8 @@
     <script src="Scripts/app/services/accountservice.js"></script>
     <script src="Scripts/app/services/profileservice.js"></script>
     <script src="Scripts/app/services/shareddataservice.js"></script>
-    <script src="Scripts/app/services/shopservice.js"></script>
+    <script src="Scripts/app/services/orderservice.js"></script>
+    <script src="Scripts/app/services/articleservice.js"></script>
     <script src="Scripts/app/services/cartservice.js"></script>
 
     <script src="Scripts/app/controllers/accountcontroller.js"></script>
@@ -44,12 +45,12 @@
 
     <script src="Scripts/app/directives/profileCmp.js"></script>
     <script src="Scripts/app/directives/cartCmp.js"></script>
-
+    <script src="Scripts/app/directives/articleCmp.js"></script>
 </head>
 
 <body   ng-app="wscApp"
         ui-prevent-touchmove-defaults
-        ng-controller="MainController">
+        ng-controller="MainCtrl">
 
     <!-- Sidebars -->
     <div ng-include="'Scripts/app/partials/sidebar.html'"
@@ -71,24 +72,11 @@
                 </div>
             </a>
 
-            <!--
-            <div class="btn-group pull-right" ui-yield-to="navbarAction">
-                <div class="btn">
-                    <i class="fa fa-shopping-cart fa-1x"></i>
-                    <span style="padding-left: 5px; padding-right: 5px">{{sizeCart}}</span>
-                    <span style="padding-left: 5px; padding-right: 5px" ng-model="SrvCart.test"></span>
-
-                    <i class="fa fa-eur" style="padding-left: 5px"></i>
-                    <span style="padding-left: 5px; padding-right: 5px">{{totalCart}}</span>
-                </div>
-            </div>
-            -->
-
             <cart-component></cart-component>
 
             <div class="btn-group pull-right" ng-show="isUserAuthenticated()">
                 <a ui-turn-on='myDropdown{{idx}}' class='btn'>
-                    <i class="fa fa-user fa-fw"></i>Hi User
+                    <i class="fa fa-user fa-fw"></i> Hi!
                     <span class="fa fa-caret-down"></span>
                 </a>
                 <ul ui-state="myDropdown{{idx}}"
@@ -100,8 +88,10 @@
                     ui-turn-off="myDropdown{{idx}}">
 
                     <li><a href="#/profile"><i class="fa fa-pencil fa-fw"></i>Profile</a></li>
+                    <!--
                     <li><a href="#/orders"><i class="fa fa-cart-arrow-down fa-fw"></i>Orders</a></li>
                     <li><a href="#/wishes"><i class="fa fa-gift fa-fw"></i>Wishes</a></li>
+                    -->
                     <li class="divider"></li>
                     <li><a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>Log out</a></li>
                 </ul>
@@ -137,8 +127,9 @@
     
     </div>
 
-    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
+    <toaster-container toaster-options="{'time-out': 2000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
     <div ui-yield-to="modals"></div>
+
 </body>
 </html>
 

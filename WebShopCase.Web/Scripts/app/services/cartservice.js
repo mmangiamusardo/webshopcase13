@@ -16,6 +16,7 @@
             add: function (id, qty, price, name, pct, vat) {
                 cart.push({ productId: id, cartQty: qty, unitPrice: price, productName: name, picture: pct, vat: vat });
 
+                // to refactor
                 subTotals = cart.reduce(function (c, x) {
                     if (!c[x.productId]) {
                         c[x.productId] = {

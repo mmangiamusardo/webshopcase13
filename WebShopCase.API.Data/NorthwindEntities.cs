@@ -29,7 +29,6 @@ namespace WebShopCase.API.Data
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Wish> Wishes { get; set; }
-        //public virtual DbSet<AppUser> AppUsers { get; set; }
 
         public virtual void Commit()
         {
@@ -43,7 +42,6 @@ namespace WebShopCase.API.Data
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
 
             modelBuilder.Configurations.Add(new OrderConfiguration());
-            modelBuilder.Configurations.Add(new OrderDetailConfiguration());
             modelBuilder.Configurations.Add(new CustomerConfiguration());
         }
 

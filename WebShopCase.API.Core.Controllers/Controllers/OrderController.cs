@@ -14,6 +14,7 @@ using WebShopCase.API.Service;
 
 namespace WebShopCase.API.Core.Controllers
 {
+    [Authorize]
     public class OrdersController : ApiController
     {
         private IOrderService _orderService;
@@ -42,10 +43,6 @@ namespace WebShopCase.API.Core.Controllers
                 //return CreatedAtRoute("DefaultApi", new { id = order.OrderID }, order);
                 return Ok(order);
             }
-            //catch(Exception ex)
-            //{
-            //    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message));
-            //}
             catch (DbUpdateException ex)
             {
                 return BadRequest(ex.GetBaseException().Message);
