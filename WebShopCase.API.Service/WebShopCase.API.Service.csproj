@@ -86,15 +86,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="Extensions\Helpers.cs" />
     <Compile Include="Infrastructure\AppOAuthProvider.cs" />
     <Compile Include="Infrastructure\AppUserManager.cs" />
-    <Compile Include="OrderService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Pagination\PagedCollection.cs" />
-    <Compile Include="ProductService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
